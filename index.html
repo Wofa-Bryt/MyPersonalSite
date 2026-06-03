@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Wofa, Economics student, developer, data analyst & tutor at UMaT, Tarkwa. Book a tutoring session or explore my work."/>
+<title>Wofa | Economist · Developer · Tutor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Karla:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #0A0A0A;
+  --bg2:      #111111;
+  --bg3:      #191919;
+  --border:   #242424;
+  --border2:  #2E2E2E;
+  --cream:    #EDE8DF;
+  --cream2:   #A09890;
+  --grey:     #5A5A5A;
+  --em:       #10B981;
+  --em2:      #34D399;
+  --amber:    #F59E0B;
+  --red:      #EF4444;
+  --syne:     'Syne', sans-serif;
+  --karla:    'Karla', sans-serif;
+  --mono:     'IBM Plex Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--karla);
+  background: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+  cursor: default;
+}
+
+/* ── GRID TEXTURE ──────────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none; z-index: 0;
+}
+
+/* ── FLOATING MATH ─────────────────────────────────────────────────────── */
+.math-bg {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  overflow: hidden;
+}
+.math-sym {
+  position: absolute;
+  font-family: var(--mono); font-size: 1rem;
+  color: rgba(16,185,129,.07);
+  animation: floatDrift linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes floatDrift {
+  from { transform: translateY(100vh) rotate(-10deg); opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  to   { transform: translateY(-20vh) rotate(10deg); opacity: 0; }
+}
+
+/* ── NAV ───────────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 22px 6%;
+  border-bottom: 1px solid transparent;
+  transition: .4s;
+}
+nav.scrolled {
+  background: rgba(10,10,10,.92);
+  backdrop-filter: blur(16px);
+  border-color: var(--border);
+  padding: 16px 6%;
+}
+
+.logo-mark {
+  font-family: var(--syne); font-size: 1.1rem; font-weight: 800;
+  color: var(--cream); text-decoration: none; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.logo-mark span { color: var(--em); }
+
+.nav-links {
+  display: flex; gap: 32px; list-style: none; align-items: center;
+}
+.nav-links a {
+  font-family: var(--mono); font-size: .72rem; font-weight: 400;
+  color: var(--cream2); text-decoration: none; letter-spacing: .5px;
+  transition: color .2s;
+}
+.nav-links a:hover { color: var(--em); }
+
+.nav-book {
+  background: var(--em) !important; color: var(--bg) !important;
+  padding: 8px 18px; border-radius: 4px;
+  font-family: var(--syne) !important; font-size: .78rem !important;
+  font-weight: 700 !important; letter-spacing: 1px !important;
+  transition: background .2s !important;
+}
+.nav-book:hover { background: var(--em2) !important; }
+
+.hamburger {
+  display: none; background: none; border: 1px solid var(--border2);
+  border-radius: 4px; padding: 8px; cursor: pointer; flex-direction: column; gap: 4px;
+}
+.hamburger span { display: block; width: 20px; height: 1.5px; background: var(--cream); border-radius: 2px; }
+
+/* ── MOBILE MENU ───────────────────────────────────────────────────────── */
+.mob-menu {
+  display: none; position: fixed; inset: 0;
+  background: var(--bg); z-index: 200;
+  flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+}
+.mob-menu.open { display: flex; }
+.mob-menu a {
+  font-family: var(--syne); font-size: 2rem; font-weight: 700;
+  color: var(--cream); text-decoration: none; letter-spacing: 2px;
+  text-transform: uppercase; transition: color .2s;
+}
+.mob-menu a:hover { color: var(--em); }
+.mob-close {
+  position: absolute; top: 24px; right: 28px;
+  background: none; border: none; color: var(--cream2);
+  font-size: 1.6rem; cursor: pointer;
+}
+
+/* ── HERO ──────────────────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 140px 6% 100px;
+  position: relative; z-index: 1;
+}
+.inner { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+.hero-tag {
+  font-family: var(--mono); font-size: .72rem; color: var(--em);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 28px;
+  display: flex; align-items: center; gap: 12px;
+}
+.hero-tag::before {
+  content: ''; display: block;
+  width: 40px; height: 1px; background: var(--em);
+}
+
+.hero h1 {
+  font-family: var(--syne);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 800; line-height: .96;
+  color: var(--cream); margin-bottom: 16px;
+  letter-spacing: -3px;
+}
+
+.hero-role {
+  font-family: var(--syne);
+  font-size: clamp(3.5rem, 9vw, 8rem);
+  font-weight: 800; line-height: .96;
+  letter-spacing: -3px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--border2);
+  display: inline-flex; align-items: center; gap: 16px;
+  margin-bottom: 48px;
+}
+.typewriter {
+  color: var(--em);
+  -webkit-text-stroke: 0;
+  border-right: 3px solid var(--em);
+  padding-right: 8px;
+  white-space: nowrap;
+  display: inline-block;
+  min-width: 18ch;
+  min-height: 1.05em;
+  animation: blink .8s step-end infinite;
+}
+@keyframes blink { 0%,100% { border-color: var(--em); } 50% { border-color: transparent; } }
+
+.hero-desc {
+  font-family: var(--karla); font-size: 1.05rem; font-weight: 300;
+  color: var(--cream2); max-width: 520px;
+  line-height: 1.8; margin-bottom: 48px;
+}
+
+.hero-ctas {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+
+.btn-em {
+  background: var(--em); color: var(--bg);
+  padding: 14px 32px; border-radius: 4px;
+  font-family: var(--syne); font-size: .85rem; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  text-decoration: none; transition: .2s; display: inline-block;
+}
+.btn-em:hover { background: var(--em2); transform: translateY(-2px); }
+
+.btn-ghost {
+  border: 1px solid var(--border2); color: var(--cream2);
+  padding: 13px 28px; border-radius: 4px;
+  font-family: var(--mono); font-size: .78rem; font-weight: 400;
+  text-decoration: none; transition: .2s; display: inline-block;
+}
+.btn-ghost:hover { border-color: var(--em); color: var(--em); transform: translateY(-2px); }
+
+.hero-scroll {
+  position: absolute; bottom: 40px; left: 6%;
+  display: flex; align-items: center; gap: 12px;
+  font-family: var(--mono); font-size: .68rem; color: var(--grey);
+  letter-spacing: 1px; text-transform: uppercase;
+}
+.scroll-line {
+  width: 1px; height: 60px; background: var(--border2);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(1); transform-origin: top; }
+  50%       { transform: scaleY(.4); transform-origin: bottom; }
+}
+
+.hero-quick-stats {
+  display: flex; gap: 0; margin-top: 64px;
+  border: 1px solid var(--border); border-radius: 8px;
+  overflow: hidden; max-width: 600px;
+}
+.q-stat {
+  flex: 1; padding: 20px 24px;
+  border-right: 1px solid var(--border);
+  transition: background .3s;
+}
+.q-stat:last-child { border-right: none; }
+.q-stat:hover { background: var(--bg2); }
+.q-stat .num {
+  font-family: var(--syne); font-size: 1.6rem; font-weight: 800;
+  color: var(--em); line-height: 1;
+}
+.q-stat .lbl {
+  font-family: var(--mono); font-size: .65rem; color: var(--grey);
+  letter-spacing: .5px; margin-top: 4px;
+}
+
+/* ── SECTION SHARED ────────────────────────────────────────────────────── */
+section { padding: 100px 6%; position: relative; z-index: 1; }
+
+.sec-label {
+  font-family: var(--mono); font-size: .68rem; color: var(--em);
+  letter-spacing: 2.5px; text-transform: uppercase;
+  margin-bottom: 16px;
+  display: flex; align-items: center; gap: 10px;
+}
+.sec-label::before { content: '//'; color: var(--grey); }
+
+.sec-title {
+  font-family: var(--syne); font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800; line-height: 1.1; color: var(--cream);
+  margin-bottom: 16px; letter-spacing: -1px;
+}
+.sec-title em { font-style: normal; color: var(--em); }
+
+.sec-sub {
+  font-size: .95rem; line-height: 1.75; color: var(--cream2);
+  max-width: 520px; font-weight: 300;
+}
+
+/* ── ABOUT ─────────────────────────────────────────────────────────────── */
+.about { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: start;
+}
+
+.about-body {
+  font-size: .95rem; line-height: 1.85; color: var(--cream2);
+  font-weight: 300; margin-top: 28px;
+}
+.about-body p + p { margin-top: 16px; }
+.about-body strong { color: var(--cream); font-weight: 500; }
+
+.about-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px;
+}
+.tag {
+  font-family: var(--mono); font-size: .68rem; color: var(--em);
+  border: 1px solid rgba(16,185,129,.25);
+  padding: 5px 12px; border-radius: 20px;
+  letter-spacing: .5px;
+}
+
+.about-cards { display: flex; flex-direction: column; gap: 16px; }
+
+.acard {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 24px 28px;
+  transition: border-color .3s;
+}
+.acard:hover { border-color: var(--em); }
+.acard-label {
+  font-family: var(--mono); font-size: .65rem; color: var(--grey);
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 6px;
+}
+.acard-value {
+  font-family: var(--syne); font-size: 1.05rem; font-weight: 700;
+  color: var(--cream);
+}
+.acard-sub { font-size: .82rem; color: var(--cream2); margin-top: 2px; }
+
+/* ── TEACHING ──────────────────────────────────────────────────────────── */
+.teaching { background: var(--bg); }
+
+.subjects-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 1px; background: var(--border);
+  border: 1px solid var(--border); border-radius: 10px;
+  overflow: hidden; margin-top: 56px;
+}
+
+.subject-card {
+  background: var(--bg); padding: 32px 28px;
+  transition: background .3s; cursor: default;
+  position: relative;
+}
+.subject-card:hover { background: var(--bg2); }
+.subject-card:hover .sub-arrow { opacity: 1; transform: translateX(0); }
+
+.sub-level {
+  font-family: var(--mono); font-size: .62rem; color: var(--grey);
+  letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
+}
+.sub-icon { font-size: 1.6rem; margin-bottom: 12px; display: block; }
+.sub-name {
+  font-family: var(--syne); font-size: 1rem; font-weight: 700;
+  color: var(--cream); margin-bottom: 8px;
+}
+.sub-desc { font-size: .82rem; line-height: 1.6; color: var(--cream2); font-weight: 300; }
+
+.difficulty {
+  display: flex; gap: 4px; margin-top: 14px;
+}
+.dot-d { width: 6px; height: 6px; border-radius: 50%; background: var(--border2); }
+.dot-d.on { background: var(--em); }
+.dot-d.amber { background: var(--amber); }
+.dot-d.red { background: var(--red); }
+
+.sub-arrow {
+  position: absolute; top: 28px; right: 24px;
+  font-size: .8rem; color: var(--em);
+  opacity: 0; transform: translateX(-6px);
+  transition: .25s; font-family: var(--mono);
+}
+
+/* ── SKILLS ────────────────────────────────────────────────────────────── */
+.skills { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+.skills-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 48px; margin-top: 56px;
+}
+
+.skill-group h3 {
+  font-family: var(--mono); font-size: .72rem; color: var(--em);
+  letter-spacing: 2px; text-transform: uppercase;
+  margin-bottom: 24px; padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.skill-item { margin-bottom: 18px; }
+.skill-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 6px;
+}
+.skill-name { font-family: var(--karla); font-size: .88rem; color: var(--cream); }
+.skill-pct  { font-family: var(--mono); font-size: .7rem; color: var(--grey); }
+
+.skill-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.skill-fill {
+  height: 100%; background: var(--em); border-radius: 2px;
+  width: 0; transition: width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.skill-fill.amber { background: var(--amber); }
+.skill-fill.mixed {
+  background: linear-gradient(90deg, var(--em), var(--amber));
+}
+
+.stack-chips {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px;
+}
+.chip {
+  font-family: var(--mono); font-size: .7rem;
+  background: var(--bg3); border: 1px solid var(--border2);
+  color: var(--cream2); padding: 6px 14px; border-radius: 4px;
+  transition: .2s; letter-spacing: .3px;
+}
+.chip:hover { border-color: var(--em); color: var(--em); }
+
+/* ── BOOKING ───────────────────────────────────────────────────────────── */
+.booking { background: var(--bg); }
+
+.book-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 80px; align-items: start; margin-top: 56px;
+}
+
+.book-info h3 {
+  font-family: var(--syne); font-size: 1.5rem; font-weight: 700;
+  color: var(--cream); margin-bottom: 16px;
+}
+.book-info p { font-size: .9rem; line-height: 1.75; color: var(--cream2); font-weight: 300; }
+
+.book-details { margin-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+.book-detail {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px; background: var(--bg2);
+  border: 1px solid var(--border); border-radius: 6px;
+}
+.bd-icon {
+  width: 36px; height: 36px; border-radius: 6px;
+  background: rgba(16,185,129,.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0; color: var(--em);
+}
+.bd-title { font-family: var(--syne); font-size: .88rem; font-weight: 700; color: var(--cream); }
+.bd-sub   { font-size: .8rem; color: var(--grey); margin-top: 2px; }
+
+.book-form {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 12px; padding: 40px;
+}
+.book-form-title {
+  font-family: var(--syne); font-size: 1.1rem; font-weight: 700;
+  color: var(--cream); margin-bottom: 28px;
+  display: flex; align-items: center; gap: 10px;
+}
+.book-form-title span {
+  font-family: var(--mono); font-size: .68rem; color: var(--em);
+  background: rgba(16,185,129,.1); padding: 3px 10px; border-radius: 20px;
+}
+
+.f-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.f-group { margin-bottom: 16px; }
+.f-group label {
+  display: block; font-family: var(--mono); font-size: .68rem;
+  color: var(--grey); letter-spacing: 1px; text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.f-group input,
+.f-group select,
+.f-group textarea {
+  width: 100%; padding: 11px 14px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: 5px; font-family: var(--karla); font-size: .88rem;
+  color: var(--cream); outline: none; transition: border-color .2s;
+}
+.f-group input::placeholder { color: var(--grey); }
+.f-group input:focus,
+.f-group select:focus,
+.f-group textarea:focus { border-color: var(--em); }
+.f-group select option { background: var(--bg3); }
+.f-group textarea { resize: vertical; min-height: 100px; }
+
+.session-types { display: flex; gap: 10px; }
+.stype {
+  flex: 1; padding: 12px;
+  border: 1px solid var(--border2); border-radius: 6px;
+  text-align: center; cursor: pointer;
+  font-family: var(--karla); font-size: .85rem; color: var(--cream2);
+  transition: .2s; background: var(--bg3);
+}
+.stype.active { border-color: var(--em); background: rgba(16,185,129,.08); color: var(--em); }
+
+.time-slots { display: flex; gap: 8px; flex-wrap: wrap; }
+.tslot {
+  padding: 7px 14px; border: 1px solid var(--border2); border-radius: 4px;
+  font-family: var(--mono); font-size: .7rem; color: var(--cream2);
+  cursor: pointer; transition: .2s; background: var(--bg3);
+}
+.tslot.active { border-color: var(--em); color: var(--em); background: rgba(16,185,129,.08); }
+
+.btn-book {
+  width: 100%; padding: 14px;
+  background: var(--em); color: var(--bg);
+  border: none; border-radius: 5px;
+  font-family: var(--syne); font-size: .88rem; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  cursor: pointer; transition: .2s; margin-top: 8px;
+}
+.btn-book:hover { background: var(--em2); transform: translateY(-1px); }
+.btn-book:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+/* ── PROJECTS ──────────────────────────────────────────────────────────── */
+.projects { background: var(--bg2); border-top: 1px solid var(--border); }
+
+.projects-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 16px; margin-top: 56px;
+}
+
+.proj-card {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 28px; position: relative; overflow: hidden;
+  transition: border-color .3s, transform .3s;
+}
+.proj-card:hover { border-color: var(--em); transform: translateY(-4px); }
+.proj-card.soon { opacity: .55; }
+
+.proj-top {
+  display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;
+}
+.proj-icon { font-size: 1.6rem; }
+.proj-status {
+  font-family: var(--mono); font-size: .62rem; padding: 3px 10px;
+  border-radius: 20px; letter-spacing: 1px;
+}
+.proj-status.live { background: rgba(16,185,129,.12); color: var(--em); }
+.proj-status.wip  { background: rgba(245,158,11,.12); color: var(--amber); }
+.proj-status.soon { background: rgba(255,255,255,.04); color: var(--grey); }
+
+.proj-name {
+  font-family: var(--syne); font-size: 1.05rem; font-weight: 700;
+  color: var(--cream); margin-bottom: 8px;
+}
+.proj-desc { font-size: .82rem; line-height: 1.6; color: var(--cream2); font-weight: 300; }
+.proj-tech {
+  display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px;
+}
+.proj-tech span {
+  font-family: var(--mono); font-size: .6rem; color: var(--grey);
+  border: 1px solid var(--border); padding: 2px 8px; border-radius: 3px;
+}
+
+/* ── CONTACT ───────────────────────────────────────────────────────────── */
+.contact-sec {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+}
+.contact-inner {
+  display: flex; justify-content: space-between;
+  align-items: flex-end; gap: 40px;
+  flex-wrap: wrap;
+}
+.contact-cta-title {
+  font-family: var(--syne); font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800; color: var(--cream); letter-spacing: -1px;
+  line-height: 1.1;
+}
+.contact-cta-title em { font-style: normal; color: var(--em); }
+
+.contact-links { display: flex; flex-direction: column; gap: 12px; min-width: 260px; }
+.contact-link {
+  display: flex; align-items: center; gap: 14px;
+  text-decoration: none; padding: 14px 20px;
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 6px; transition: .2s;
+}
+.contact-link:hover { border-color: var(--em); transform: translateX(4px); }
+.cl-icon { font-size: 1.1rem; width: 20px; text-align: center; }
+.cl-text { font-family: var(--mono); font-size: .78rem; color: var(--cream2); }
+.contact-link:hover .cl-text { color: var(--em); }
+
+/* ── FOOTER ────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--bg2); border-top: 1px solid var(--border);
+  padding: 28px 6%;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; position: relative; z-index: 1;
+}
+.footer-copy { font-family: var(--mono); font-size: .7rem; color: var(--grey); }
+.footer-copy span { color: var(--em); }
+
+/* ── ANIMATIONS ────────────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity .7s, transform .7s;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .about-grid  { grid-template-columns: 1fr; }
+  .subjects-grid { grid-template-columns: 1fr 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .book-grid   { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .nav-links  { display: none; }
+  .hamburger  { display: flex; }
+  section { padding: 72px 5%; }
+  .subjects-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .f-row { grid-template-columns: 1fr; }
+  .hero h1 { letter-spacing: -2px; }
+  .hero-role { letter-spacing: -2px; }
+}
+</style>
+</head>
+<body>
+
+<!-- floating math symbols -->
+<div class="math-bg" id="mathBg"></div>
+
+<!-- mobile menu -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" onclick="closeMob()">✕</button>
+  <a href="#about"    onclick="closeMob()">About</a>
+  <a href="#teaching" onclick="closeMob()">Teaching</a>
+  <a href="#skills"   onclick="closeMob()">Skills</a>
+  <a href="#booking"  onclick="closeMob()">Book</a>
+  <a href="#projects" onclick="closeMob()">Projects</a>
+</div>
+
+<!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
+<nav id="nav">
+  <a class="logo-mark" href="#">W<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#teaching">Teaching</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#booking" class="nav-book">Book a Session</a></li>
+  </ul>
+  <button class="hamburger" onclick="openMob()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="inner">
+    <div class="hero-tag">UMaT · Tarkwa, Ghana · Level 300</div>
+    <h1>Wofa<br/> Bryt</h1>
+    <div class="hero-role">
+      <span id="typewriter" class="typewriter">Economist.</span>
+    </div>
+    <p class="hero-desc">
+      BSc Economics &amp; Industrial Organisation student at UMaT.
+      I build on the web, analyse data, and make complex ideas click in lectures,
+      code, and conversation.
+    </p>
+    <div class="hero-ctas">
+      <a href="#booking" class="btn-em">Book a Session</a>
+      <a href="#skills"  class="btn-ghost">// View My Stack</a>
+    </div>
+    <div class="hero-quick-stats fade-up">
+      <div class="q-stat">
+        <div class="num">1st class Student</div>
+        <!-- <div class="lbl">Current CWA</div> -->
+      </div>
+      <div class="q-stat">
+        <div class="num">7+</div>
+        <div class="lbl">Subjects Taught</div>
+      </div>
+      <div class="q-stat">
+        <div class="num">L100 to L300</div>
+        <div class="lbl">Students Helped</div>
+      </div>
+      <div class="q-stat">
+        <div class="num">Free</div>
+        <div class="lbl">Current Rate</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- ── ABOUT ─────────────────────────────────────────────────────────────────── -->
+<section class="about" id="about">
+  <div class="inner">
+    <div class="about-grid">
+      <div>
+        <div class="sec-label">About Me</div>
+        <h2 class="sec-title">I didn't choose<br/>Economics.<br/><em>It chose me.</em></h2>
+        <div class="about-body">
+          <p>My path wasn't straightforward. My dad wanted medicine, the system tracked me into science, and WASSCE placement landed me in Economics instead of Computer Science. What I found was that I was actually good at it and that the two worlds aren't as far apart as people think.</p>
+          <p>At <strong>UMaT, Tarkwa</strong>, I'm reading <strong>BSc Economics &amp; Industrial Organisation</strong> under the Faculty of Integrated Management Science. Outside of lectures, I teach classmates across levels; Econometrics, Calculus, Python, Statistics, and more, because explaining something to someone else is the best way to really know it.</p>
+          <p>I'm building toward a career in <strong>data analytics and web development</strong> with Python, Flask and Django. I learn by building,
+          and I take my stack seriously.</p>
+        </div>
+        <div class="about-tags">
+          <span class="tag">Economics</span>
+          <span class="tag">Industrial Organisation</span>
+          <span class="tag">Data Analytics</span>
+          <span class="tag">Web Development</span>
+          <span class="tag">Python</span>
+          <span class="tag">Calculus Enthusiast</span>
+          <!-- <span class="tag">NSMQ Alumnus</span> -->
+        </div>
+      </div>
+      <div class="about-cards fade-up">
+        <div class="acard">
+          <div class="acard-label">University</div>
+          <div class="acard-value">University of Mines &amp; Technology</div>
+          <div class="acard-sub">Tarkwa, Western Region, Ghana</div>
+        </div>
+        <div class="acard">
+          <div class="acard-label">Programme</div>
+          <div class="acard-value">BSc Economics &amp; Industrial Organisation</div>
+          <div class="acard-sub">Faculty of Integrated Management Science · Level 300</div>
+        </div>
+        <div class="acard">
+          <div class="acard-label">Current Semester</div>
+          <div class="acard-value">Semester 2 (EC 3), June 2026</div>
+          <div class="acard-sub">Econometrics II · Game Theory · Financial Economics · and more</div>
+        </div>
+        <div class="acard">
+          <div class="acard-label">Certifications</div>
+          <div class="acard-value">Sololearn Python Certificate</div>
+          <div class="acard-sub">freeCodeCamp Data Analysis with Python, in progress</div>
+        </div>
+        <div class="acard">
+          <div class="acard-label">Target</div>
+          <div class="acard-value">First Class Honours</div>
+          <div class="acard-sub">CWA 82.80, aiming for 87 to 90 by final semester</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TEACHING ───────────────────────────────────────────────────────────────── -->
+<section class="teaching" id="teaching">
+  <div class="inner">
+    <div class="sec-label">What I Teach</div>
+    <h2 class="sec-title">7 Subjects.<br/>L100 to L300.<br/><em>Free, for now.</em></h2>
+    <p class="sec-sub">I teach informally across levels at UMaT. If you're stuck, book a session and let's work through it together.</p>
+
+    <div class="subjects-grid fade-up">
+
+      <div class="subject-card">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">All Levels</div>
+        <span class="sub-icon">∫</span>
+        <div class="sub-name">Calculus</div>
+        <p class="sub-desc">Limits, derivatives, integrals, and applications. My personal favourite .I'll make it make sense.</p>
+        <div class="difficulty">
+          <div class="dot-d on amber"></div><div class="dot-d on amber"></div>
+          <div class="dot-d on red"></div>
+        </div>
+      </div>
+
+      <div class="subject-card">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">L200 · L300</div>
+        <span class="sub-icon">📊</span>
+        <div class="sub-name">Econometrics</div>
+        <p class="sub-desc">OLS, regression analysis, hypothesis testing, time series. I cover both Econometrics I and II.</p>
+        <div class="difficulty">
+          <div class="dot-d on amber"></div><div class="dot-d on red"></div>
+          <div class="dot-d on red"></div>
+        </div>
+      </div>
+
+      <div class="subject-card">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">All Levels</div>
+        <span class="sub-icon">📈</span>
+        <div class="sub-name">Statistics</div>
+        <p class="sub-desc">Descriptive stats, probability, distributions, inference. Theory and how to apply it in practice.</p>
+        <div class="difficulty">
+          <div class="dot-d on"></div><div class="dot-d on amber"></div>
+          <div class="dot-d"></div>
+        </div>
+      </div>
+
+      <div class="subject-card">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">L100 · L200</div>
+        <span class="sub-icon">🐍</span>
+        <div class="sub-name">Python Programming</div>
+        <p class="sub-desc">From syntax basics to Pandas and NumPy for data analysis. Practical, hands-on sessions.</p>
+        <div class="difficulty">
+          <div class="dot-d on"></div><div class="dot-d on"></div>
+          <div class="dot-d"></div>
+        </div>
+      </div>
+
+      <div class="subject-card">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">All Levels</div>
+        <span class="sub-icon">📐</span>
+        <div class="sub-name">Mathematical Economics</div>
+        <p class="sub-desc">Optimisation, matrix algebra, utility functions, and economic models expressed mathematically.</p>
+        <div class="difficulty">
+          <div class="dot-d on amber"></div><div class="dot-d on red"></div>
+          <div class="dot-d on red"></div>
+        </div>
+      </div>
+
+      <div class="subject-card">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">L100 · L200</div>
+        <span class="sub-icon">💰</span>
+        <div class="sub-name">Financial Accounting</div>
+        <p class="sub-desc">Journal entries, balance sheets, income statements, and trial balances. Done properly, step by step.</p>
+        <div class="difficulty">
+          <div class="dot-d on"></div><div class="dot-d on amber"></div>
+          <div class="dot-d"></div>
+        </div>
+      </div>
+
+      <div class="subject-card">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">L100</div>
+        <span class="sub-icon">🌍</span>
+        <div class="sub-name">Principles of Economics</div>
+        <p class="sub-desc">Micro and macro foundations; supply, demand, markets, GDP, inflation. The fundamentals done right.</p>
+        <div class="difficulty">
+          <div class="dot-d on"></div><div class="dot-d"></div>
+          <div class="dot-d"></div>
+        </div>
+      </div>
+
+      <div class="subject-card" style="grid-column: span 2;">
+        <div class="sub-arrow">→</div>
+        <div class="sub-level">L200 · L300</div>
+        <span class="sub-icon">🎯</span>
+        <div class="sub-name">General Academic Support</div>
+        <p class="sub-desc">Stuck on an assignment, past questions, or exam prep? Book a session and we'll work through it. I cover most Economics and Management Science modules.</p>
+        <div class="difficulty">
+          <div class="dot-d on"></div><div class="dot-d"></div>
+          <div class="dot-d"></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:20px; display:flex; gap:20px; align-items:center; flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;gap:3px;">
+          <div class="dot-d on"></div><div class="dot-d"></div><div class="dot-d"></div>
+        </div>
+        <span style="font-family:var(--mono);font-size:.68rem;color:var(--grey);">Beginner</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;gap:3px;">
+          <div class="dot-d on amber"></div><div class="dot-d on amber"></div><div class="dot-d"></div>
+        </div>
+        <span style="font-family:var(--mono);font-size:.68rem;color:var(--grey);">Intermediate</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <div style="display:flex;gap:3px;">
+          <div class="dot-d on red"></div><div class="dot-d on red"></div><div class="dot-d on red"></div>
+        </div>
+        <span style="font-family:var(--mono);font-size:.68rem;color:var(--grey);">Advanced</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ─────────────────────────────────────────────────────────────────── -->
+<section class="skills" id="skills">
+  <div class="inner">
+    <div class="sec-label">Tech Stack &amp; Skills</div>
+    <h2 class="sec-title">What I<br/><em>Actually</em> Know.</h2>
+    <p class="sec-sub">Self-taught, continuously learning. Here's where I honestly stand with my tools.</p>
+
+    <div class="skills-grid fade-up">
+      <div class="skill-group">
+        <h3>// Languages &amp; Frameworks</h3>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Python</span><span class="skill-pct">80%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="80"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">HTML / CSS</span><span class="skill-pct">85%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="85"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">JavaScript</span><span class="skill-pct">55%</span></div>
+          <div class="skill-bar"><div class="skill-fill amber" data-pct="55"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Flask</span><span class="skill-pct">65%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="65"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Django</span><span class="skill-pct">45%</span></div>
+          <div class="skill-bar"><div class="skill-fill amber" data-pct="45"></div></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>// Data &amp; Analysis</h3>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Pandas</span><span class="skill-pct">70%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="70"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">NumPy</span><span class="skill-pct">65%</span></div>
+          <div class="skill-bar"><div class="skill-fill" data-pct="65"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Matplotlib</span><span class="skill-pct">60%</span></div>
+          <div class="skill-bar"><div class="skill-fill amber" data-pct="60"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Econometrics (Applied)</span><span class="skill-pct">75%</span></div>
+          <div class="skill-bar"><div class="skill-fill mixed" data-pct="75"></div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-row"><span class="skill-name">Statistics</span><span class="skill-pct">78%</span></div>
+          <div class="skill-bar"><div class="skill-fill mixed" data-pct="78"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stack-chips fade-up" style="margin-top:40px;">
+      <div class="chip">VS Code</div>
+      <div class="chip">Jupyter</div>
+      <div class="chip">Git</div>
+      <div class="chip">GitHub Pages</div>
+      <div class="chip">Canva</div>
+      <div class="chip">Sololearn</div>
+      <div class="chip">freeCodeCamp</div>
+      <div class="chip">Notion</div>
+      <div class="chip">MoMo Payments</div>
+      <div class="chip">Linux (basic)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── BOOKING ────────────────────────────────────────────────────────────────── -->
+<section class="booking" id="booking">
+  <div class="inner">
+    <div class="sec-label">Book a Session</div>
+    <h2 class="sec-title">Let's Work<br/>Through It<br/><em>Together.</em></h2>
+    <p class="sec-sub">Fill out the form and I'll reach out to confirm a time. Sessions are currently free; just bring your notes and questions.</p>
+
+    <div class="book-grid">
+      <div class="book-info">
+        <h3>What to Expect</h3>
+        <p>Sessions are focused, straightforward, and tailored to exactly where you're stuck. I'll explain it multiple ways until it clicks. No judgment, no rush.</p>
+        <div class="book-details">
+          <div class="book-detail">
+            <div class="bd-icon">⏱️</div>
+            <div>
+              <div class="bd-title">45 to 90 Minutes</div>
+              <div class="bd-sub">Typical session length depending on topic complexity</div>
+            </div>
+          </div>
+          <div class="book-detail">
+            <div class="bd-icon">📍</div>
+            <div>
+              <div class="bd-title">On Campus, UMaT</div>
+              <div class="bd-sub">Library, study rooms, or agreed location on campus</div>
+            </div>
+          </div>
+          <div class="book-detail">
+            <div class="bd-icon">💬</div>
+            <div>
+              <div class="bd-title">WhatsApp Confirmation</div>
+              <div class="bd-sub">I'll confirm details via WhatsApp within 24 hours</div>
+            </div>
+          </div>
+          <div class="book-detail">
+            <div class="bd-icon">🆓</div>
+            <div>
+              <div class="bd-title">Currently Free</div>
+              <div class="bd-sub">No charge right now. I'm considering formalising next semester.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-form fade-up">
+        <div class="book-form-title">
+          Booking Request <span>Free Session</span>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label>Your Name</label>
+            <input type="text" id="bName" placeholder="e.g. Ama Owusu"/>
+          </div>
+          <div class="f-group">
+            <label>WhatsApp Number</label>
+            <input type="tel" id="bPhone" placeholder="+233 XX XXX XXXX"/>
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label>Academic Level</label>
+            <select id="bLevel">
+              <option value="">Select your level</option>
+              <option>Level 100</option>
+              <option>Level 200</option>
+              <option>Level 300</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="f-group">
+            <label>Subject</label>
+            <select id="bSubject">
+              <option value="">Select a subject</option>
+              <option>Calculus</option>
+              <option>Econometrics I</option>
+              <option>Econometrics II</option>
+              <option>Statistics</option>
+              <option>Python Programming</option>
+              <option>Mathematical Economics</option>
+              <option>Financial Accounting</option>
+              <option>Principles of Economics</option>
+              <option>General Academic Support</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label>Session Type</label>
+          <div class="session-types">
+            <div class="stype active" onclick="selectType(this)">👤 One on One</div>
+            <div class="stype" onclick="selectType(this)">👥 Group (2 to 4)</div>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label>Preferred Day</label>
+          <select id="bDay">
+            <option value="">Select a day</option>
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+            <option>Sunday</option>
+          </select>
+        </div>
+
+        <div class="f-group">
+          <label>Preferred Time</label>
+          <div class="time-slots">
+            <div class="tslot" onclick="selectTime(this)">Morning<br/><small>8 to 11AM</small></div>
+            <div class="tslot" onclick="selectTime(this)">Afternoon<br/><small>12 to 3PM</small></div>
+            <div class="tslot active" onclick="selectTime(this)">Evening<br/><small>6 to 9PM</small></div>
+            <div class="tslot" onclick="selectTime(this)">Weekend<br/><small>Flexible</small></div>
+          </div>
+        </div>
+
+        <div class="f-group">
+          <label>What Specifically Do You Need Help With?</label>
+          <textarea id="bNote" placeholder="e.g. I don't understand OLS estimators and the Gauss-Markov assumptions. My exam is next week."></textarea>
+        </div>
+
+        <button class="btn-book" id="bookBtn" onclick="submitBooking()">
+          Request Session →
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ───────────────────────────────────────────────────────────────── -->
+<section class="projects" id="projects">
+  <div class="inner">
+    <div class="sec-label">Projects</div>
+    <h2 class="sec-title">Things I've<br/><em>Built.</em></h2>
+    <p class="sec-sub">A growing portfolio. Most of it is still in progress, so check back soon.</p>
+
+    <div class="projects-grid fade-up">
+      <div class="proj-card">
+        <div class="proj-top">
+          <span class="proj-icon">🏢</span>
+          <span class="proj-status live">Live</span>
+        </div>
+        <div class="proj-name">WebReach GH</div>
+        <p class="proj-desc">Agency website for my web design startup targeting businesses in Tarkwa without an online presence.</p>
+        <div class="proj-tech">
+          <span>HTML</span><span>CSS</span><span>JS</span><span>GitHub Pages</span>
+        </div>
+      </div>
+
+      <div class="proj-card soon">
+        <div class="proj-top">
+          <span class="proj-icon">📊</span>
+          <span class="proj-status wip">In Progress</span>
+        </div>
+        <div class="proj-name">Data Analysis Dashboard</div>
+        <p class="proj-desc">Economic data visualisation project using Pandas and Matplotlib, part of my freeCodeCamp certification path.</p>
+        <div class="proj-tech">
+          <span>Python</span><span>Pandas</span><span>Matplotlib</span><span>Jupyter</span>
+        </div>
+      </div>
+
+      <div class="proj-card soon">
+        <div class="proj-top">
+          <span class="proj-icon">🔬</span>
+          <span class="proj-status soon">Coming Soon</span>
+        </div>
+        <div class="proj-name">Final Year Research Project</div>
+        <p class="proj-desc">Economics research project, area TBD. Planning to apply econometric methods and data visualisation.</p>
+        <div class="proj-tech">
+          <span>Python</span><span>Econometrics</span><span>R</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ────────────────────────────────────────────────────────────────── -->
+<section class="contact-sec" id="contact">
+  <div class="inner">
+    <div class="contact-inner">
+      <div>
+        <div class="sec-label">Get In Touch</div>
+        <h2 class="contact-cta-title">Let's <em>Connect.</em><br/>Always open<br/>to a conversation.</h2>
+      </div>
+      <div class="contact-links fade-up">
+        <a class="contact-link" href="https://wa.me/233536034920" target="_blank">
+          <span class="cl-icon">💬</span>
+          <span class="cl-text">WhatsApp: +233 536 034 920</span>
+        </a>
+        <a class="contact-link" href="mailto:wofabryt@gmail.com">
+          <span class="cl-icon">📧</span>
+          <span class="cl-text">wofabryt@gmail.com</span>
+        </a>
+        <a class="contact-link" href="https://github.com/Wofa_Bryt" target="_blank">
+          <span class="cl-icon">💻</span>
+          <span class="cl-text">github.com/Wofa_Bryt</span>
+        </a>
+        <a class="contact-link" href="#booking">
+          <span class="cl-icon">📅</span>
+          <span class="cl-text">Book a tutoring session</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-copy">
+    © 2026 <span>Wofa [Surname]</span> · Built with HTML, CSS &amp; JavaScript
+  </div>
+  <div class="footer-copy" style="text-align:right;">
+    UMaT · Tarkwa, Ghana 🇬🇭
+  </div>
+</footer>
+
+<!-- ── JS ──────────────────────────────────────────────────────────────────────── -->
+<script>
+// ── Floating math symbols
+const symbols = ['∫','∂','∑','π','∇','dx','dy','∞','∈','∀','≈','∆','f(x)','∂²','∮','lim'];
+const mathBg  = document.getElementById('mathBg');
+for (let i = 0; i < 18; i++) {
+  const s = document.createElement('div');
+  s.className = 'math-sym';
+  s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+  s.style.left = Math.random() * 100 + '%';
+  s.style.animationDuration = (18 + Math.random() * 22) + 's';
+  s.style.animationDelay   = -(Math.random() * 30) + 's';
+  s.style.fontSize = (.65 + Math.random() * .7) + 'rem';
+  mathBg.appendChild(s);
+}
+
+// ── Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+// ── Mobile nav
+function openMob()  { document.getElementById('mobMenu').classList.add('open'); }
+function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+
+// ── Typewriter
+const roles = ['Economist.', 'Developer.', 'Data Analyst.', 'Your Tutor.'];
+let ri = 0, ci = 0, deleting = false;
+const tw = document.getElementById('typewriter');
+
+function typeLoop() {
+  const word = roles[ri];
+
+  if (deleting) {
+    ci = Math.max(ci - 1, 0);
+    tw.textContent = ci === 0 ? '\u00A0' : word.slice(0, ci);
+
+    if (ci === 0) {
+      deleting = false;
+      ri = (ri + 1) % roles.length;
+      setTimeout(typeLoop, 400);
+      return;
+    }
+  } else {
+    ci += 1;
+    tw.textContent = word.slice(0, ci);
+
+    if (ci === word.length) {
+      deleting = true;
+      setTimeout(typeLoop, 1200);
+      return;
+    }
+  }
+
+  const speed = deleting ? 55 : 85;
+  setTimeout(typeLoop, speed);
+}
+
+typeLoop();
+
+// ── Intersection observer (fade-up + skill bars)
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (!e.isIntersecting) return;
+    setTimeout(() => {
+      e.target.classList.add('visible');
+      e.target.querySelectorAll('.skill-fill').forEach(bar => {
+        bar.style.width = bar.dataset.pct + '%';
+      });
+    }, i * 80);
+    obs.unobserve(e.target);
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+// Also trigger skills when section visible
+const skillsSection = document.getElementById('skills');
+const skillObs = new IntersectionObserver((entries) => {
+  if (entries[0].isIntersecting) {
+    document.querySelectorAll('.skill-fill').forEach(b => b.style.width = b.dataset.pct + '%');
+    skillObs.disconnect();
+  }
+}, { threshold: 0.2 });
+skillObs.observe(skillsSection);
+
+// ── Session type toggle
+function selectType(el) {
+  document.querySelectorAll('.stype').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── Time slot toggle
+function selectTime(el) {
+  document.querySelectorAll('.tslot').forEach(s => s.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// ── Booking submit
+function submitBooking() {
+  const fields = ['bName','bPhone','bLevel','bSubject','bDay','bNote'];
+  const empty = fields.some(id => !document.getElementById(id).value.trim());
+  if (empty) {
+    alert('Please fill in all fields before requesting a session.');
+    return;
+  }
+  const btn = document.getElementById('bookBtn');
+  const name     = document.getElementById('bName').value;
+  const phone    = document.getElementById('bPhone').value;
+  const level    = document.getElementById('bLevel').value;
+  const subject  = document.getElementById('bSubject').value;
+  const day      = document.getElementById('bDay').value;
+  const note     = document.getElementById('bNote').value;
+  const time     = document.querySelector('.tslot.active')?.textContent.split('\n')[0] || 'Evening';
+  const type     = document.querySelector('.stype.active')?.textContent || 'One-on-One';
+
+  // Build WhatsApp message
+  const msg = encodeURIComponent(
+    `📚 *Tutoring Request*\n\n` +
+    `Name: ${name}\n` +
+    `Level: ${level}\n` +
+    `Subject: ${subject}\n` +
+    `Type: ${type}\n` +
+    `Day: ${day} · ${time}\n\n` +
+    `Notes: ${note}`
+  );
+
+  btn.textContent = '✓ Sending via WhatsApp...';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    window.open(`https://wa.me/233536034920?text=${msg}`, '_blank');
+    btn.textContent = '✓ Request Sent!';
+    btn.style.background = '#2d7a2d';
+    setTimeout(() => {
+      btn.textContent = 'Request Session →';
+      btn.style.background = '';
+      btn.disabled = false;
+      fields.forEach(id => document.getElementById(id).value = '');
+    }, 3000);
+  }, 800);
+}
+</script>
+</body>
+</html>
