@@ -86,9 +86,14 @@ nav.scrolled {
 }
 
 .logo-mark {
+  display: inline-flex; align-items: center; gap: 10px;
   font-family: var(--syne); font-size: 1.1rem; font-weight: 800;
   color: var(--cream); text-decoration: none; letter-spacing: 2px;
   text-transform: uppercase;
+}
+.logo-mark img {
+  width: 40px; height: 40px; object-fit: contain;
+  border-radius: 50%;
 }
 .logo-mark span { color: var(--em); }
 
@@ -622,7 +627,10 @@ footer {
 
 <!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
 <nav id="nav">
-  <a class="logo-mark" href="#">W<span>.</span></a>
+  <a class="logo-mark" href="#">
+    <img src="brand-logo.png" alt="Wofa brand" class="logo-img" onerror="this.style.display='none'"/>
+    <span>W</span>
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#teaching">Teaching</a></li>
@@ -666,8 +674,8 @@ footer {
         <div class="lbl">Students Helped</div>
       </div>
       <div class="q-stat">
-        <div class="num">Free</div>
-        <div class="lbl">Current Rate</div>
+        <div class="num">Negotiable</div>
+        <div class="lbl">Session Rate</div>
       </div>
     </div>
   </div>
@@ -735,8 +743,8 @@ footer {
 <section class="teaching" id="teaching">
   <div class="inner">
     <div class="sec-label">What I Teach</div>
-    <h2 class="sec-title">7 Subjects.<br/>L100 to L300.<br/><em>Free, for now.</em></h2>
-    <p class="sec-sub">I teach informally across levels at UMaT. If you're stuck, book a session and let's work through it together.</p>
+    <h2 class="sec-title">7 Subjects.<br/>L100 to L300.<br/><em>Rates negotiable.</em></h2>
+    <p class="sec-sub">I focus on calculation and maths-based subjects across all courses. If you're stuck, book a session and we'll work through it together.</p>
 
     <div class="subjects-grid fade-up">
 
@@ -938,7 +946,7 @@ footer {
   <div class="inner">
     <div class="sec-label">Book a Session</div>
     <h2 class="sec-title">Let's Work<br/>Through It<br/><em>Together.</em></h2>
-    <p class="sec-sub">Fill out the form and I'll reach out to confirm a time. Sessions are currently free; just bring your notes and questions.</p>
+    <p class="sec-sub">Fill out the form and I'll reach out to confirm availability. Tutoring is offered at a competitive, negotiable rate for maths-heavy and calculation-based subjects.</p>
 
     <div class="book-grid">
       <div class="book-info">
@@ -967,10 +975,10 @@ footer {
             </div>
           </div>
           <div class="book-detail">
-            <div class="bd-icon">🆓</div>
+            <div class="bd-icon">💵</div>
             <div>
-              <div class="bd-title">Currently Free</div>
-              <div class="bd-sub">No charge right now. I'm considering formalising next semester.</div>
+              <div class="bd-title">Negotiable Rate</div>
+              <div class="bd-sub">I can adjust the session fee based on topic and time.</div>
             </div>
           </div>
         </div>
@@ -978,7 +986,7 @@ footer {
 
       <div class="book-form fade-up">
         <div class="book-form-title">
-          Booking Request <span>Free Session</span>
+          Booking Request <span>Negotiable Rate</span>
         </div>
 
         <div class="f-row">
@@ -1129,7 +1137,7 @@ footer {
           <span class="cl-icon">📧</span>
           <span class="cl-text">wofabryt@gmail.com</span>
         </a>
-        <a class="contact-link" href="https://github.com/Wofa_Bryt" target="_blank">
+        <a class="contact-link" href="https://github.com/Wofa-Bryt" target="_blank">
           <span class="cl-icon">💻</span>
           <span class="cl-text">github.com/Wofa_Bryt</span>
         </a>
@@ -1145,7 +1153,7 @@ footer {
 <!-- ── FOOTER ──────────────────────────────────────────────────────────────────── -->
 <footer>
   <div class="footer-copy">
-    © 2026 <span>Wofa [Surname]</span> · Built with HTML, CSS &amp; JavaScript
+    © 2026 <span>Wofa Bryt</span> · Built with HTML, CSS &amp; JavaScript
   </div>
   <div class="footer-copy" style="text-align:right;">
     UMaT · Tarkwa, Ghana 🇬🇭
@@ -1269,8 +1277,9 @@ function submitBooking() {
 
   // Build WhatsApp message
   const msg = encodeURIComponent(
-    `📚 *Tutoring Request*\n\n` +
+    `📚 *Website Tutoring Booking Request*\n\n` +
     `Name: ${name}\n` +
+    `Phone: ${phone}\n` +
     `Level: ${level}\n` +
     `Subject: ${subject}\n` +
     `Type: ${type}\n` +

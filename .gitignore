@@ -1,0 +1,5 @@
+# Ignore draft files and exports not ready for deployment
+webreachgh.html
+downloadfile.PDF
+*.log
+.DS_Store
