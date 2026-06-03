@@ -96,17 +96,17 @@ nav.scrolled {
   border-radius: 50%;
 }
 .logo-mark span { color: var(--em); }
-
-.nav-links {
-  display: flex; gap: 32px; list-style: none; align-items: center;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
-.nav-links a {
-  font-family: var(--mono); font-size: .72rem; font-weight: 400;
-  color: var(--cream2); text-decoration: none; letter-spacing: .5px;
-  transition: color .2s;
-}
-.nav-links a:hover { color: var(--em); }
-
 .nav-book {
   background: var(--em) !important; color: var(--bg) !important;
   padding: 8px 18px; border-radius: 4px;
@@ -628,8 +628,8 @@ footer {
 <!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
 <nav id="nav">
   <a class="logo-mark" href="#">
-    <img src="brand-logo.png" alt="Wofa brand" class="logo-img" onerror="this.style.display='none'"/>
-    <span>W</span>
+    <img src="brand-logo.png" alt="Wofa brand logo" class="logo-img" />
+    <span class="visually-hidden">Wofa</span>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -704,6 +704,8 @@ footer {
           <span class="tag">Data Analytics</span>
           <span class="tag">Web Development</span>
           <span class="tag">Python</span>
+          <span class="tag">Microsoft Office</span>
+          <span class="tag">HTML & CSS</span>
           <span class="tag">Calculus Enthusiast</span>
           <!-- <span class="tag">NSMQ Alumnus</span> -->
         </div>
@@ -726,13 +728,13 @@ footer {
         </div>
         <div class="acard">
           <div class="acard-label">Certifications</div>
-          <div class="acard-value">Sololearn Python Certificate</div>
-          <div class="acard-sub">freeCodeCamp Data Analysis with Python, in progress</div>
+          <div class="acard-value">Openlabs Ghana Python</div>
+          <div class="acard-sub">Microsoft Office (IPMC Swedru), HTML/CSS (Sololearn), plus freeCodeCamp data study in progress</div>
         </div>
         <div class="acard">
-          <div class="acard-label">Target</div>
-          <div class="acard-value">First Class Honours</div>
-          <div class="acard-sub">CWA 82.80, aiming for 87 to 90 by final semester</div>
+          <div class="acard-label">Growth</div>
+          <div class="acard-value">Building my brand</div>
+          <div class="acard-sub">I’m developing both tutoring skills and real projects while growing my client base.</div>
         </div>
       </div>
     </div>
