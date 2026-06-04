@@ -4,7 +4,40 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <meta name="description" content="Wofa, Economics student, developer, data analyst & tutor at UMaT, Tarkwa. Book a tutoring session or explore my work."/>
+<meta name="keywords" content="UMaT tutor, Economics tutor, data analyst, web developer, Python tutor, Flask, Django, Econometrics, Calculus, Statistics, academic support"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:title" content="Wofa Bryt | Economist · Developer · Tutor"/>
+<meta property="og:description" content="Tutoring and data/web development support from a UMaT Economics student. Book a session or explore my portfolio."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="brand-logo.png"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="Wofa Bryt"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Wofa Bryt | Economist · Developer · Tutor"/>
+<meta name="twitter:description" content="Tutoring and data/web development support from a UMaT Economics student. Book a session or explore my portfolio."/>
+<meta name="twitter:image" content="brand-logo.png"/>
+<meta name="theme-color" content="#0A0A0A"/>
 <title>Wofa | Economist · Developer · Tutor</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Wofa Bryt",
+  "jobTitle": "Economist, Developer, Tutor",
+  "worksFor": {
+    "@type": "Organization",
+    "name": "University of Mines & Technology"
+  },
+  "alumniOf": "University of Mines & Technology",
+  "description": "Tutoring and data/web development support from a UMaT Economics student. Book a session or explore my portfolio.",
+  "knowsAbout": ["Economics", "Data Analysis", "Web Development", "Python", "Flask", "Django", "Calculus", "Statistics", "Econometrics"],
+  "sameAs": [
+    "https://github.com/Wofa-Bryt",
+    "https://wa.me/233536034920",
+    "mailto:wofabryt@gmail.com"
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Karla:wght@300;400;500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -136,22 +169,57 @@ nav.scrolled {
 
 /* ── MOBILE MENU ───────────────────────────────────────────────────────── */
 .mob-menu {
-  display: none; position: fixed; inset: 0;
-  background: var(--bg); z-index: 200;
-  flex-direction: column; align-items: center; justify-content: center; gap: 36px;
+  position: fixed; top: 0; right: 0; bottom: 0; left: auto;
+  width: clamp(280px, 80vw, 340px);
+  background: rgba(10,10,10,.96); z-index: 200;
+  display: flex; flex-direction: column; align-items: flex-start;
+  justify-content: flex-start; gap: 28px;
+  padding: 100px 24px 24px; overflow-y: auto;
+  transform: translateX(110%);
+  transition: transform .28s ease, visibility .28s ease;
+  visibility: hidden;
 }
-.mob-menu.open { display: flex; }
+.mob-menu.open {
+  transform: translateX(0);
+  visibility: visible;
+}
 .mob-menu a {
-  font-family: var(--syne); font-size: 2rem; font-weight: 700;
-  color: var(--cream); text-decoration: none; letter-spacing: 2px;
+  font-family: var(--syne); font-size: 1.65rem; font-weight: 700;
+  color: var(--cream); text-decoration: none; letter-spacing: .5px;
   text-transform: uppercase; transition: color .2s;
 }
 .mob-menu a:hover { color: var(--em); }
 .mob-close {
-  position: absolute; top: 24px; right: 28px;
+  position: absolute; top: 22px; right: 22px;
   background: none; border: none; color: var(--cream2);
-  font-size: 1.6rem; cursor: pointer;
+  font-size: 1.8rem; cursor: pointer;
 }
+body.menu-open { overflow: hidden; }
+.menu-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.45);
+  z-index: 150; opacity: 0;
+  visibility: hidden; transition: opacity .28s ease, visibility .28s ease;
+}
+.menu-backdrop.visible {
+  opacity: 1; visibility: visible;
+}
+.nav-links a.active,
+.mob-menu a.active {
+  color: var(--em);
+}
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(20,20,20,.98); color: var(--cream);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 999px; padding: 12px 20px;
+  box-shadow: 0 24px 40px rgba(0,0,0,.3);
+  font-family: var(--mono); font-size: .88rem;
+  opacity: 0; visibility: hidden;
+  transition: opacity .24s ease, visibility .24s ease;
+  z-index: 300;
+}
+.toast.visible { opacity: 1; visibility: visible; }
 
 /* ── HERO ──────────────────────────────────────────────────────────────── */
 .hero {
@@ -249,12 +317,13 @@ nav.scrolled {
 .hero-quick-stats {
   display: flex; gap: 0; margin-top: 64px;
   border: 1px solid var(--border); border-radius: 8px;
-  overflow: hidden; max-width: 600px;
+  overflow: hidden; width: min(100%, 900px);
 }
 .q-stat {
-  flex: 1; padding: 20px 24px;
+  flex: 1; min-width: 0; padding: 20px 24px;
   border-right: 1px solid var(--border);
   transition: background .3s;
+  word-break: break-word;
 }
 .q-stat:last-child { border-right: none; }
 .q-stat:hover { background: var(--bg2); }
@@ -289,6 +358,36 @@ section { padding: 100px 6%; position: relative; z-index: 1; }
   font-size: .95rem; line-height: 1.75; color: var(--cream2);
   max-width: 520px; font-weight: 300;
 }
+
+.testimonial {
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.testimonial-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px;
+}
+.review-card,
+.proj-actions {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 12px; padding: 28px;
+}
+.review-card p {
+  font-size: .95rem; line-height: 1.8; color: var(--cream2); margin-bottom: 18px;
+}
+.review-author {
+  font-family: var(--syne); font-size: 1rem; color: var(--cream);
+}
+.review-meta {
+  font-family: var(--mono); font-size: .75rem; color: var(--grey);
+  margin-top: 6px;
+}
+.proj-link {
+  display: inline-block; margin-top: 20px;
+  font-family: var(--mono); font-size: .78rem;
+  letter-spacing: .8px; color: var(--em); text-decoration: none;
+}
+.proj-link:hover { color: var(--em2); }
 
 /* ── ABOUT ─────────────────────────────────────────────────────────────── */
 .about { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
@@ -349,6 +448,7 @@ section { padding: 100px 6%; position: relative; z-index: 1; }
   position: relative;
 }
 .subject-card:hover { background: var(--bg2); }
+.subject-card.wide-card { grid-column: span 2; }
 .subject-card:hover .sub-arrow { opacity: 1; transform: translateX(0); }
 
 .sub-level {
@@ -486,6 +586,8 @@ section { padding: 100px 6%; position: relative; z-index: 1; }
 .f-group select option { background: var(--bg3); }
 .f-group textarea { resize: vertical; min-height: 100px; }
 
+.subject-other { display: none; }
+
 .session-types { display: flex; gap: 10px; }
 .stype {
   flex: 1; padding: 12px;
@@ -606,6 +708,7 @@ footer {
 @media (max-width: 960px) {
   .about-grid  { grid-template-columns: 1fr; }
   .subjects-grid { grid-template-columns: 1fr 1fr; }
+  .subject-card.wide-card { grid-column: auto; }
   .skills-grid { grid-template-columns: 1fr; }
   .book-grid   { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr 1fr; }
@@ -613,12 +716,33 @@ footer {
 @media (max-width: 640px) {
   .nav-links  { display: none; }
   .hamburger  { display: flex; }
+  nav { padding: 12px 5%; }
   section { padding: 72px 5%; }
+  .hero { padding: 110px 5% 80px; }
+  .hero-tag { font-size: .72rem; gap: 8px; }
+  .hero h1 { font-size: clamp(2.8rem, 16vw, 5rem); letter-spacing: -1.5px; }
+  .hero-role {
+    display: block; font-size: 1.7rem; margin-bottom: 24px;
+    line-height: 1.1;
+  }
+  .typewriter {
+    min-width: auto; white-space: normal; padding-right: 0;
+    border-right: 2px solid var(--em); word-break: break-word;
+  }
+  .hero-desc { max-width: 100%; }
+  .hero-ctas { flex-direction: column; align-items: stretch; }
+  .hero-ctas a { width: 100%; text-align: center; }
+  .hero-quick-stats { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .q-stat { padding: 18px 16px; }
+  .mob-menu { padding-top: 110px; }
+  .mob-menu a { font-size: 1.5rem; }
+  .book-form { padding: 28px; }
+  .contact-links { min-width: auto; }
+  .footer-copy { width: 100%; text-align: left; }
   .subjects-grid { grid-template-columns: 1fr; }
   .projects-grid { grid-template-columns: 1fr; }
+  .testimonial-grid { grid-template-columns: 1fr; }
   .f-row { grid-template-columns: 1fr; }
-  .hero h1 { letter-spacing: -2px; }
-  .hero-role { letter-spacing: -2px; }
 }
 </style>
 </head>
@@ -628,18 +752,19 @@ footer {
 <div class="math-bg" id="mathBg"></div>
 
 <!-- mobile menu -->
-<div class="mob-menu" id="mobMenu">
-  <button class="mob-close" onclick="closeMob()">✕</button>
+<div class="mob-menu" id="mobMenu" aria-label="Mobile navigation">
+  <button class="mob-close" onclick="closeMob()" aria-label="Close navigation menu">✕</button>
   <a href="#about"    onclick="closeMob()">About</a>
   <a href="#teaching" onclick="closeMob()">Teaching</a>
   <a href="#skills"   onclick="closeMob()">Skills</a>
   <a href="#booking"  onclick="closeMob()">Book</a>
   <a href="#projects" onclick="closeMob()">Projects</a>
 </div>
+<div class="menu-backdrop" id="menuBackdrop" onclick="closeMob()" aria-hidden="true"></div>
 
 <!-- ── NAV ─────────────────────────────────────────────────────────────────── -->
 <nav id="nav">
-  <a class="logo-mark" href="#">
+  <a class="logo-mark" href="#" aria-label="Wofa home">
     <img src="brand-logo.png" alt="Wofa brand logo" class="logo-img" />
     <span class="visually-hidden">Wofa</span>
   </a>
@@ -650,7 +775,7 @@ footer {
     <li><a href="#projects">Projects</a></li>
     <li><a href="#booking" class="nav-book">Book a Session</a></li>
   </ul>
-  <button class="hamburger" onclick="openMob()">
+  <button class="hamburger" onclick="openMob()" aria-label="Open navigation menu" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
 </nav>
@@ -664,9 +789,8 @@ footer {
       <span id="typewriter" class="typewriter">Economist.</span>
     </div>
     <p class="hero-desc">
-      BSc Economics &amp; Industrial Organisation student at UMaT.
-      I build on the web, analyse data, and make complex ideas click in lectures,
-      code, and conversation.
+      I help students and small teams turn complex numbers into clear results. 
+      Whether it is economics, statistics or web tools, I bring structure, practice, and real learning to every session.
     </p>
     <div class="hero-ctas">
       <a href="#booking" class="btn-em">Book a Session</a>
@@ -705,10 +829,9 @@ footer {
         <div class="sec-label">About Me</div>
         <h2 class="sec-title">I didn't choose<br/>Economics.<br/><em>It chose me.</em></h2>
         <div class="about-body">
-          <p>My path wasn't straightforward. My dad wanted medicine, the system tracked me into science, and WASSCE placement landed me in Economics instead of Computer Science. What I found was that I was actually good at it and that the two worlds aren't as far apart as people think.</p>
-          <p>At <strong>UMaT, Tarkwa</strong>, I'm reading <strong>BSc Economics &amp; Industrial Organisation</strong> under the Faculty of Integrated Management Science. Outside of lectures, I teach classmates across levels; Econometrics, Calculus, Python, Statistics, and more, because explaining something to someone else is the best way to really know it.</p>
-          <p>I'm building toward a career in <strong>data analytics and web development</strong> with Python, Flask and Django. I learn by building,
-          and I take my stack seriously.</p>
+          <p>My academic journey taught me how to adapt and focus on what matters: using data, logic, and clear communication to solve real problems. Economics became the place where I could bring analytical thinking and practical decision-making together.</p>
+          <p>At <strong>UMaT, Tarkwa</strong>, I'm studying <strong>BSc Economics &amp; Industrial Organisation</strong> in the Faculty of Integrated Management Science. Outside the classroom, I support classmates with Econometrics, Calculus, Python, Statistics, and more because teaching helps me master each topic.</p>
+          <p>I'm building a career in <strong>data analytics and web development</strong> with Python, Flask, and Django. I learn by building useful work, and I take my technical skills seriously.</p>
         </div>
         <div class="about-tags">
           <span class="tag">Economics</span>
@@ -719,7 +842,6 @@ footer {
           <span class="tag">Microsoft Office</span>
           <span class="tag">HTML & CSS</span>
           <span class="tag">Calculus Enthusiast</span>
-          <!-- <span class="tag">NSMQ Alumnus</span> -->
         </div>
       </div>
       <div class="about-cards fade-up">
@@ -846,7 +968,7 @@ footer {
         </div>
       </div>
 
-      <div class="subject-card" style="grid-column: span 2;">
+      <div class="subject-card wide-card">
         <div class="sub-arrow">→</div>
         <div class="sub-level">L200 · L300</div>
         <span class="sub-icon">🎯</span>
@@ -998,7 +1120,7 @@ footer {
         </div>
       </div>
 
-      <div class="book-form fade-up">
+      <form id="bookingForm" class="book-form fade-up" onsubmit="submitBooking(event)">
         <div class="book-form-title">
           Booking Request <span>Negotiable Rate</span>
         </div>
@@ -1006,18 +1128,18 @@ footer {
         <div class="f-row">
           <div class="f-group">
             <label>Your Name</label>
-            <input type="text" id="bName" placeholder="e.g. Ama Owusu"/>
+            <input type="text" id="bName" placeholder="e.g. Ama Owusu" required />
           </div>
           <div class="f-group">
             <label>WhatsApp Number</label>
-            <input type="tel" id="bPhone" placeholder="+233 XX XXX XXXX"/>
+            <input type="tel" id="bPhone" placeholder="+233 XX XXX XXXX" required />
           </div>
         </div>
 
         <div class="f-row">
           <div class="f-group">
             <label>Academic Level</label>
-            <select id="bLevel">
+            <select id="bLevel" required>
               <option value="">Select your level</option>
               <option>Level 100</option>
               <option>Level 200</option>
@@ -1027,7 +1149,7 @@ footer {
           </div>
           <div class="f-group">
             <label>Subject</label>
-            <select id="bSubject">
+            <select id="bSubject" required>
               <option value="">Select a subject</option>
               <option>Calculus</option>
               <option>Econometrics I</option>
@@ -1038,7 +1160,19 @@ footer {
               <option>Financial Accounting</option>
               <option>Principles of Economics</option>
               <option>General Academic Support</option>
+              <option>Other</option>
             </select>
+          </div>
+          <div class="f-group subject-other" id="subjectOtherField" style="display:none;">
+            <label>If other, please specify</label>
+            <input type="text" id="bSubjectOther" placeholder="e.g. Advanced Data Analytics" />
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-group">
+            <label>Main goal for this session</label>
+            <input type="text" id="bGoal" placeholder="e.g. exam prep, assignment support, concept review" required />
           </div>
         </div>
 
@@ -1052,7 +1186,7 @@ footer {
 
         <div class="f-group">
           <label>Preferred Day</label>
-          <select id="bDay">
+          <select id="bDay" required>
             <option value="">Select a day</option>
             <option>Monday</option>
             <option>Tuesday</option>
@@ -1076,13 +1210,13 @@ footer {
 
         <div class="f-group">
           <label>What Specifically Do You Need Help With?</label>
-          <textarea id="bNote" placeholder="e.g. I don't understand OLS estimators and the Gauss-Markov assumptions. My exam is next week."></textarea>
+          <textarea id="bNote" placeholder="e.g. I don't understand OLS estimators and the Gauss-Markov assumptions. My exam is next week." required></textarea>
         </div>
 
-        <button class="btn-book" id="bookBtn" onclick="submitBooking()">
+        <button class="btn-book" id="bookBtn" type="submit">
           Request Session →
         </button>
-      </div>
+      </form>
     </div>
   </div>
 </section>
@@ -1101,10 +1235,11 @@ footer {
           <span class="proj-status live">Live</span>
         </div>
         <div class="proj-name">WebReach GH</div>
-        <p class="proj-desc">Agency website for my web design startup targeting businesses in Tarkwa without an online presence.</p>
+        <p class="proj-desc">Agency website built for Tarkwa businesses seeking a clean, mobile-friendly online presence.</p>
         <div class="proj-tech">
           <span>HTML</span><span>CSS</span><span>JS</span><span>GitHub Pages</span>
         </div>
+        <div class="proj-link" style="opacity:.75;cursor:default;">Live demo available soon</div>
       </div>
 
       <div class="proj-card soon">
@@ -1113,7 +1248,7 @@ footer {
           <span class="proj-status wip">In Progress</span>
         </div>
         <div class="proj-name">Data Analysis Dashboard</div>
-        <p class="proj-desc">Economic data visualisation project using Pandas and Matplotlib, part of my freeCodeCamp certification path.</p>
+        <p class="proj-desc">A dashboard concept for economic datasets, showing trends, forecasts, and clear visual insights.</p>
         <div class="proj-tech">
           <span>Python</span><span>Pandas</span><span>Matplotlib</span><span>Jupyter</span>
         </div>
@@ -1129,6 +1264,27 @@ footer {
         <div class="proj-tech">
           <span>Python</span><span>Econometrics</span><span>R</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIAL ─────────────────────────────────────────────────────────────── -->
+<section class="testimonial" id="testimonial">
+  <div class="inner">
+    <div class="sec-label">Student feedback</div>
+    <h2 class="sec-title">Trusted for clear support<br/><em>and better exam confidence.</em></h2>
+    <p class="sec-sub">Students say my sessions are calm, practical, and easy to follow. Here is feedback from learners who have booked tutoring already.</p>
+    <div class="testimonial-grid fade-up">
+      <div class="review-card">
+        <p>“Wofa helped me make sense of Econometrics II in just one hour. His examples were clear, and he helped me apply the formulas to real exam questions.”</p>
+        <div class="review-author">Sandra B., Level 300 student</div>
+        <div class="review-meta">Econometrics review · UMaT</div>
+      </div>
+      <div class="review-card">
+        <p>“I was stuck on Python loops and data tables. The session was focused, easy to follow, and I left with a step-by-step plan I could actually use.”</p>
+        <div class="review-author">Michael A., Level 200 student</div>
+        <div class="review-meta">Python tutoring · classroom support</div>
       </div>
     </div>
   </div>
@@ -1173,6 +1329,7 @@ footer {
     UMaT · Tarkwa, Ghana 🇬🇭
   </div>
 </footer>
+<div class="toast" id="toastMessage" aria-live="polite"></div>
 
 <!-- ── JS ──────────────────────────────────────────────────────────────────────── -->
 <script>
@@ -1194,9 +1351,46 @@ for (let i = 0; i < 18; i++) {
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
+const navLinks = document.querySelectorAll('nav .nav-links a');
+const mobileLinks = document.querySelectorAll('.mob-menu a');
+const sections = document.querySelectorAll('section[id]');
+const menuBackdrop = document.getElementById('menuBackdrop');
+const hamburgerButton = document.querySelector('.hamburger');
+
+function updateActiveNav() {
+  const scrollPosition = window.scrollY + 220;
+  sections.forEach(section => {
+    const top = section.offsetTop;
+    const height = section.offsetHeight;
+    const id = section.getAttribute('id');
+    const isActive = scrollPosition >= top && scrollPosition < top + height;
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${id}` && isActive);
+    });
+    mobileLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${id}` && isActive);
+    });
+  });
+}
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+
 // ── Mobile nav
-function openMob()  { document.getElementById('mobMenu').classList.add('open'); }
-function closeMob() { document.getElementById('mobMenu').classList.remove('open'); }
+function openMob()  {
+  document.getElementById('mobMenu').classList.add('open');
+  menuBackdrop.classList.add('visible');
+  document.body.classList.add('menu-open');
+  hamburgerButton.setAttribute('aria-expanded', 'true');
+}
+function closeMob() {
+  document.getElementById('mobMenu').classList.remove('open');
+  menuBackdrop.classList.remove('visible');
+  document.body.classList.remove('menu-open');
+  hamburgerButton.setAttribute('aria-expanded', 'false');
+}
+window.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeMob();
+});
 
 // ── Typewriter
 const roles = ['Economist.', 'Developer.', 'Data Analyst.', 'Your Tutor.'];
@@ -1271,23 +1465,39 @@ function selectTime(el) {
   el.classList.add('active');
 }
 
+function handleSubjectChange() {
+  const otherField = document.getElementById('subjectOtherField');
+  const showOther = document.getElementById('bSubject').value === 'Other';
+  otherField.style.display = showOther ? 'block' : 'none';
+}
+
+document.getElementById('bSubject').addEventListener('change', handleSubjectChange);
+
 // ── Booking submit
-function submitBooking() {
-  const fields = ['bName','bPhone','bLevel','bSubject','bDay','bNote'];
+function submitBooking(event) {
+  event.preventDefault();
+  const fields = ['bName','bPhone','bLevel','bSubject','bDay','bNote','bGoal'];
   const empty = fields.some(id => !document.getElementById(id).value.trim());
   if (empty) {
-    alert('Please fill in all fields before requesting a session.');
+    showToast('Please fill in all fields before requesting a session.');
     return;
   }
+  const subject  = document.getElementById('bSubject').value;
+  const otherSub = document.getElementById('bSubjectOther').value.trim();
+  if (subject === 'Other' && !otherSub) {
+    alert('Please specify the subject when you select Other.');
+    return;
+  }
+
   const btn = document.getElementById('bookBtn');
   const name     = document.getElementById('bName').value;
   const phone    = document.getElementById('bPhone').value;
   const level    = document.getElementById('bLevel').value;
-  const subject  = document.getElementById('bSubject').value;
   const day      = document.getElementById('bDay').value;
   const note     = document.getElementById('bNote').value;
   const time     = document.querySelector('.tslot.active')?.textContent.split('\n')[0] || 'Evening';
   const type     = document.querySelector('.stype.active')?.textContent || 'One-on-One';
+  const finalSubject = subject === 'Other' ? otherSub : subject;
 
   // Build WhatsApp message
   const msg = encodeURIComponent(
@@ -1295,7 +1505,7 @@ function submitBooking() {
     `Name: ${name}\n` +
     `Phone: ${phone}\n` +
     `Level: ${level}\n` +
-    `Subject: ${subject}\n` +
+    `Subject: ${finalSubject}\n` +
     `Type: ${type}\n` +
     `Day: ${day} · ${time}\n\n` +
     `Notes: ${note}`
@@ -1306,6 +1516,7 @@ function submitBooking() {
 
   setTimeout(() => {
     window.open(`https://wa.me/233536034920?text=${msg}`, '_blank');
+    showToast('WhatsApp booking message opened. I will follow up soon.');
     btn.textContent = '✓ Request Sent!';
     btn.style.background = '#2d7a2d';
     setTimeout(() => {
@@ -1313,8 +1524,17 @@ function submitBooking() {
       btn.style.background = '';
       btn.disabled = false;
       fields.forEach(id => document.getElementById(id).value = '');
+      document.getElementById('bSubjectOther').value = '';
+      handleSubjectChange();
     }, 3000);
   }, 800);
+}
+
+function showToast(message) {
+  const toast = document.getElementById('toastMessage');
+  toast.textContent = message;
+  toast.classList.add('visible');
+  setTimeout(() => toast.classList.remove('visible'), 3200);
 }
 </script>
 </body>
